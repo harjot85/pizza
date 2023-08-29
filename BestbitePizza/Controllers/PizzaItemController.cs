@@ -1,4 +1,4 @@
-using BestbitePizza.DataServices.Dapper;
+using BestbitePizza.DataServices.Dapper.Services;
 using BestbitePizza.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
@@ -20,9 +20,9 @@ namespace BestbitePizza.Controllers
         }
 
         [HttpGet(Name = "GetPizzaItem")]
-        public IEnumerable<Item> Get()
+        public async Task<IEnumerable<Item>> Get()
         {
-            return _pizzaItemDataService.GetPizzaItems();
+            return await _pizzaItemDataService.GetPizzaItems();
         }
     }
 }
