@@ -1,7 +1,7 @@
+//using BestbitePizza.DataServices.Cosmos.Services;
 using BestbitePizza.DataServices.Dapper.Services;
 using BestbitePizza.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Xml.Linq;
 
 namespace BestbitePizza.Controllers
 {
@@ -20,9 +20,9 @@ namespace BestbitePizza.Controllers
         }
 
         [HttpGet(Name = "GetPizzaItem")]
-        public async Task<IEnumerable<Item>> Get()
+        public async Task<ActionResult<IEnumerable<Item>>> Get()
         {
-            return await _pizzaItemDataService.GetPizzaItems();
+            return Ok(await _pizzaItemDataService.GetPizzaItems());
         }
     }
 }

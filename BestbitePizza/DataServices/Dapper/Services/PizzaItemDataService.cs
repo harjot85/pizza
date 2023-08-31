@@ -15,7 +15,7 @@ namespace BestbitePizza.DataServices.Dapper.Services
             List<Item> items = new();
             try
             {
-                string query = "Select id as Id, name As Name, availability_id As AvailabilityId, category_id As CategoryId, image_name As ImageName From pizza.item";
+                string query = "Select I.id as Id, I.name As Name, I.availability_id As AvailabilityId, I.category_id As CategoryId, I.image_name As ImageName From pizza.item I";
                 
                 return await _dataContext.GetAll<Item>(query);
             }
@@ -24,8 +24,5 @@ namespace BestbitePizza.DataServices.Dapper.Services
                 return items;
             }
         }
-
-       
-
     }
 }

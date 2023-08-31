@@ -1,4 +1,5 @@
 using BestbitePizza.DataServices;
+using BestbitePizza.DataServices.Cosmos;
 using BestbitePizza.DataServices.Dapper;
 using BestbitePizza.DataServices.Dapper.Services;
 
@@ -13,7 +14,10 @@ builder.Services.AddSwaggerGen();
 
 // service registration
 builder.Services.AddSingleton<IDataContext, DataContext>();
+builder.Services.AddSingleton<ICosmosDataContext, CosmosDataContext>();
 builder.Services.AddScoped<IPizzaItemDataService, PizzaItemDataService>();
+builder.Services.AddScoped<BestbitePizza.DataServices.Cosmos.Services.IPizzaItemDataService, BestbitePizza.DataServices.Cosmos.Services.PizzaItemDataService>();
+
 
 var app = builder.Build();
 
