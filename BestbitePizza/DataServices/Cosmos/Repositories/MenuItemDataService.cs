@@ -48,7 +48,7 @@ namespace BestbitePizza.DataServices.Cosmos.Services
             throw new NotImplementedException();
         }
 
-        public Task<MenuItem> DeletePizzaItem()
+        public Task<MenuItem> DeletePizzaItem(int id)
         {
             throw new NotImplementedException();
         }

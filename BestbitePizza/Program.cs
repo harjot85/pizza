@@ -15,8 +15,8 @@ builder.Services.AddSwaggerGen();
 // service registration
 builder.Services.AddSingleton<IDataContext, DataContext>();
 builder.Services.AddSingleton<ICosmosDataContext, CosmosDataContext>();
-//builder.Services.AddScoped<IPizzaItemDataService, PizzaItemDataService>();
-builder.Services.AddScoped<IMenuItemDataService, BestbitePizza.DataServices.Cosmos.Services.MenuItemDataService>();
+builder.Services.AddScoped<IMenuItemDataService, MenuItemDataService>();
+//builder.Services.AddScoped<IMenuItemDataService, BestbitePizza.DataServices.Cosmos.Services.MenuItemDataService>();
 
 
 var app = builder.Build();

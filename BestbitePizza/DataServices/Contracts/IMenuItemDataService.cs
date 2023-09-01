@@ -13,7 +13,7 @@ namespace BestbitePizza.DataServices.Contracts
         Task<MenuItem> UpdatePizzaItem(MenuItem menuItem);
         Task<MenuItem> UpdatePizzaItems(List<MenuItem> menuItems);
 
-        Task<MenuItem> DeletePizzaItem();
+        Task<MenuItem> DeletePizzaItem(int id);
 
         Task<List<MenuItem>> GetDeals();
     }

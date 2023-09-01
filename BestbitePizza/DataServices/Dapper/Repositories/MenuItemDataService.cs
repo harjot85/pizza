@@ -13,9 +13,18 @@ namespace BestbitePizza.DataServices.Dapper.Services
             _dataContext = dataContext;
         }
 
-        public Task<MenuItem> GetPizzaItem(int id)
+        public async Task<MenuItem> GetPizzaItem(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string query = "Select I.id as ItemId, I.name As Name, I.availability_id As AvailabilityId, I.category_id As CategoryId, I.image_name As ImageName From pizza.menu_item I";
+
+                return await _dataContext.Get<MenuItem>(query);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<List<MenuItem>> GetPizzaItems()
@@ -23,7 +32,7 @@ namespace BestbitePizza.DataServices.Dapper.Services
             List<MenuItem> items = new();
             try
             {
-                string query = "Select I.id as Id, I.name As Name, I.availability_id As AvailabilityId, I.category_id As CategoryId, I.image_name As ImageName From pizza.item I";
+                string query = "Select I.id as ItemId, I.name As Name, I.availability_id As AvailabilityId, I.category_id As CategoryId, I.image_name As ImageName From pizza.menu_item I";
 
                 return await _dataContext.GetAll<MenuItem>(query);
             }
@@ -43,7 +52,7 @@ namespace BestbitePizza.DataServices.Dapper.Services
             throw new NotImplementedException();
         }
 
-        public Task<MenuItem> DeletePizzaItem()
+        public Task<MenuItem> DeletePizzaItem(int id)
         {
             throw new NotImplementedException();
         }
