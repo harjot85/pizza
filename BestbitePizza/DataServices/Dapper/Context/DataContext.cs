@@ -3,7 +3,7 @@ using Dapper;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace BestbitePizza.DataServices.Dapper
+namespace BestbitePizza.DataServices.Dapper.Context
 {
     public class DataContext : IDataContext
     {

@@ -1,4 +1,4 @@
-﻿namespace BestbitePizza.DataServices.Dapper
+﻿namespace BestbitePizza.DataServices.Dapper.Context
 {
     public interface IDataContext
     {

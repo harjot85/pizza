@@ -1,5 +1,4 @@
-//using BestbitePizza.DataServices.Cosmos.Services;
-using BestbitePizza.DataServices.Dapper.Services;
+using BestbitePizza.DataServices.Contracts;
 using BestbitePizza.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,16 +10,16 @@ namespace BestbitePizza.Controllers
     {
         
         private readonly ILogger<PizzaItemController> _logger;
-        private readonly IPizzaItemDataService _pizzaItemDataService;
+        private readonly IMenuItemDataService _pizzaItemDataService;
 
-        public PizzaItemController(ILogger<PizzaItemController> logger, IPizzaItemDataService pizzaItemDataService)
+        public PizzaItemController(ILogger<PizzaItemController> logger, IMenuItemDataService pizzaItemDataService)
         {
             _logger = logger;
             _pizzaItemDataService = pizzaItemDataService;
         }
 
         [HttpGet(Name = "GetPizzaItem")]
-        public async Task<ActionResult<IEnumerable<Item>>> Get()
+        public async Task<ActionResult<IEnumerable<MenuItem>>> Get()
         {
             return Ok(await _pizzaItemDataService.GetPizzaItems());
         }

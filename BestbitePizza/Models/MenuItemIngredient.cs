@@ -1,6 +1,6 @@
 ﻿namespace BestbitePizza.Models
 {
-    public class Menu
+    public class MenuItemIngredient
     {
     }
 }

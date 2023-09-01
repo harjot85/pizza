@@ -1,6 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
 
-namespace BestbitePizza.DataServices
+namespace BestbitePizza.DataServices.Cosmos.Context
 {
     public interface ICosmosDataContext
     {

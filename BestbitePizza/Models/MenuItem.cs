@@ -1,6 +1,6 @@
 ﻿namespace BestbitePizza.Models
 {
-    public class Item
+    public class MenuItem
     {
         public int ItemId { get; set; }
         public string Name { get; set; }

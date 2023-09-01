@@ -2,7 +2,7 @@
 using BestbitePizza.Models;
 using Microsoft.Azure.Cosmos;
 
-namespace BestbitePizza.DataServices.Cosmos
+namespace BestbitePizza.DataServices.Cosmos.Context
 {
     public class CosmosDataContext : ICosmosDataContext
     {
@@ -13,7 +13,7 @@ namespace BestbitePizza.DataServices.Cosmos
         public CosmosDataContext(IConfiguration configuration)
         {
             _configuration = configuration;
-         
+
             accountEndpoint = _configuration.GetConnectionString("Cosmos-Endpoint") ?? ERROR.ACCOUNT_ENDPOINT_NOT_FOUND;
             authKey = _configuration.GetConnectionString("Cosmos-Key") ?? ERROR.AUTH_KEY_NOT_FOUND;
         }
