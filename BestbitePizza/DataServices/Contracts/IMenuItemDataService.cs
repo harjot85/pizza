@@ -1,19 +1,12 @@
-﻿using BestbitePizza.Models;
+﻿using BestbitePizza.DataServices.Dapper.Context;
+using BestbitePizza.Models;
 
 namespace BestbitePizza.DataServices.Contracts
 {
-    public interface IMenuItemDataService
+    public interface IMenuItemDataService : IRepository
     {
-        Task<MenuItem> GetPizzaItem(int id);
-        Task<List<MenuItem>> GetPizzaItems();
-
-        Task<MenuItem> AddPizzaItem(MenuItem menuItem);
-        Task<MenuItem> AddPizzaItems(List<MenuItem> menuItems);
-
-        Task<MenuItem> UpdatePizzaItem(MenuItem menuItem);
-        Task<MenuItem> UpdatePizzaItems(List<MenuItem> menuItems);
-
-        Task<MenuItem> DeletePizzaItem(int id);
+        Task<MenuItem> UpdateMenuItem(MenuItem menuItem);
+        Task<MenuItem> UpdateMenuItems(List<MenuItem> menuItems);
 
         Task<List<MenuItem>> GetDeals();
     }

@@ -22,14 +22,14 @@ namespace BestbitePizza.Controllers
         [Route("{id}")]
         public async Task<ActionResult<IEnumerable<MenuItem>>> Get(int id)
         {
-            return Ok(await _pizzaItemDataService.GetPizzaItem(id));
+            return Ok(await _pizzaItemDataService.Get<MenuItem>(id));
         }
 
         [HttpGet]
         [Route("all")]
         public async Task<ActionResult<IEnumerable<MenuItem>>> GetAll()
         {
-            return Ok(await _pizzaItemDataService.GetPizzaItems());
+            return Ok(await _pizzaItemDataService.GetAll<MenuItem>());
         }
     }
 }

@@ -4,13 +4,13 @@ using Microsoft.Azure.Cosmos;
 
 namespace BestbitePizza.DataServices.Cosmos.Context
 {
-    public class CosmosDataContext : ICosmosDataContext
+    public class CosmosRepository : ICosmosRepository
     {
         private readonly IConfiguration _configuration;
         private readonly string accountEndpoint;
         private readonly string authKey;
 
-        public CosmosDataContext(IConfiguration configuration)
+        public CosmosRepository(IConfiguration configuration)
         {
             _configuration = configuration;
 
@@ -18,7 +18,7 @@ namespace BestbitePizza.DataServices.Cosmos.Context
             authKey = _configuration.GetConnectionString("Cosmos-Key") ?? ERROR.AUTH_KEY_NOT_FOUND;
         }
 
-        public async Task<T> Get<T>(QueryDefinition query)
+        public async Task<T> Get<T>(int id)
         {
             try
             {
@@ -26,7 +26,12 @@ namespace BestbitePizza.DataServices.Cosmos.Context
                 Database database = client.GetDatabase(_configuration.GetValue<string>("CosmosResources:Database"));
                 Container container = database.GetContainer(_configuration.GetValue<string>("CosmosResources:Container"));
 
-                using FeedIterator<T> feed = container.GetItemQueryIterator<T>(queryDefinition: query);
+                string query = "Select I.id as Id, I.name As Name, I.availability_id As AvailabilityId, I.category_id As CategoryId, I.image_name As ImageName FROM Items I Where I.item_id = @Id";
+                QueryDefinition cosmosQuery = new QueryDefinition(query)
+                    .WithParameter("@Id", 5);
+                // .WithParameter("", 0);
+
+                using FeedIterator<T> feed = container.GetItemQueryIterator<T>(queryDefinition: cosmosQuery);
 
                 FeedResponse<T> response = await feed.ReadNextAsync();
 
@@ -38,7 +43,7 @@ namespace BestbitePizza.DataServices.Cosmos.Context
             }
         }
 
-        public async Task<List<T>> GetAll<T>(QueryDefinition query)
+        public async Task<List<T>> GetAll<T>()
         {
             try
             {
@@ -46,7 +51,10 @@ namespace BestbitePizza.DataServices.Cosmos.Context
                 Database database = client.GetDatabase(_configuration.GetValue<string>("CosmosResources:Database"));
                 Container container = database.GetContainer(_configuration.GetValue<string>("CosmosResources:Container"));
 
-                using FeedIterator<T> feed = container.GetItemQueryIterator<T>(queryDefinition: query);
+                string query = "";
+                QueryDefinition cosmosQuery = new QueryDefinition(query);
+
+                using FeedIterator<T> feed = container.GetItemQueryIterator<T>(queryDefinition: cosmosQuery);
 
                 List<T> items = new();
                 while (feed.HasMoreResults)
@@ -61,6 +69,16 @@ namespace BestbitePizza.DataServices.Cosmos.Context
             {
                 throw;
             }
+        }
+
+        public Task<T> Add<T>(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<MenuItem> Delete(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

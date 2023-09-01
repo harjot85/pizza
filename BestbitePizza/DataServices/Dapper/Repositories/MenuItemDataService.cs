@@ -1,58 +1,30 @@
 ﻿using BestbitePizza.Models;
 using BestbitePizza.DataServices.Contracts;
 using BestbitePizza.DataServices.Dapper.Context;
+using System.Data.SqlClient;
+using System.Data;
+using BestbitePizza.Constants;
 
 namespace BestbitePizza.DataServices.Dapper.Services
 {
-    public class MenuItemDataService : IMenuItemDataService
+    public class MenuItemDataService : Repository, IMenuItemDataService
     {
-        private readonly IDataContext _dataContext;
+        //private readonly IRepository _dataContext;
 
-        public MenuItemDataService(IDataContext dataContext)
-        {
-            _dataContext = dataContext;
-        }
+        public MenuItemDataService(IConfiguration configuration) : base(configuration)
+        { }
 
-        public async Task<MenuItem> GetPizzaItem(int id)
-        {
-            try
-            {
-                string query = "Select I.id as ItemId, I.name As Name, I.availability_id As AvailabilityId, I.category_id As CategoryId, I.image_name As ImageName From pizza.menu_item I";
-
-                return await _dataContext.Get<MenuItem>(query);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-
-        public async Task<List<MenuItem>> GetPizzaItems()
-        {
-            List<MenuItem> items = new();
-            try
-            {
-                string query = "Select I.id as ItemId, I.name As Name, I.availability_id As AvailabilityId, I.category_id As CategoryId, I.image_name As ImageName From pizza.menu_item I";
-
-                return await _dataContext.GetAll<MenuItem>(query);
-            }
-            catch (Exception ex)
-            {
-                return items;
-            }
-        }
-
-        public Task<MenuItem> AddPizzaItem(MenuItem menuItem)
+        public Task<MenuItem> AddMenuItem(MenuItem menuItem)
         {
             throw new NotImplementedException();
         }
 
-        public Task<MenuItem> AddPizzaItems(List<MenuItem> menuItems)
+        public Task<MenuItem> AddMenuItems(List<MenuItem> menuItems)
         {
             throw new NotImplementedException();
         }
 
-        public Task<MenuItem> DeletePizzaItem(int id)
+        public Task<MenuItem> DeleteMenuItem(int id)
         {
             throw new NotImplementedException();
         }
@@ -62,12 +34,12 @@ namespace BestbitePizza.DataServices.Dapper.Services
             throw new NotImplementedException();
         }
 
-        public Task<MenuItem> UpdatePizzaItem(MenuItem menuItem)
+        public Task<MenuItem> UpdateMenuItem(MenuItem menuItem)
         {
             throw new NotImplementedException();
         }
 
-        public Task<MenuItem> UpdatePizzaItems(List<MenuItem> menuItems)
+        public Task<MenuItem> UpdateMenuItems(List<MenuItem> menuItems)
         {
             throw new NotImplementedException();
         }

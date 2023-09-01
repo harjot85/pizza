@@ -13,8 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // service registration
-builder.Services.AddSingleton<IDataContext, DataContext>();
-builder.Services.AddSingleton<ICosmosDataContext, CosmosDataContext>();
+builder.Services.AddSingleton<IRepository, Repository>();
+builder.Services.AddSingleton<ICosmosRepository, CosmosRepository>();
 builder.Services.AddScoped<IMenuItemDataService, MenuItemDataService>();
 //builder.Services.AddScoped<IMenuItemDataService, BestbitePizza.DataServices.Cosmos.Services.MenuItemDataService>();
 
