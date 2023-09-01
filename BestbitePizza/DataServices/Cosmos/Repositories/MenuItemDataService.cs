@@ -1,5 +1,5 @@
 ﻿using BestbitePizza.DataServices.Contracts;
-using BestbitePizza.DataServices.Cosmos.Context;
+using BestbitePizza.DataServices.Cosmos.Repositories;
 using BestbitePizza.Models;
 using Microsoft.Azure.Cosmos;
 

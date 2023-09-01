@@ -1,9 +1,9 @@
 ﻿using BestbitePizza.Models;
 using BestbitePizza.DataServices.Contracts;
-using BestbitePizza.DataServices.Dapper.Context;
 using System.Data.SqlClient;
 using System.Data;
 using BestbitePizza.Constants;
+using BestbitePizza.DataServices.Dapper.Repositories;
 
 namespace BestbitePizza.DataServices.Dapper.Services
 {

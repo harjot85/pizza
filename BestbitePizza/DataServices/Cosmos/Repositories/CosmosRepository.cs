@@ -1,10 +1,11 @@
 ﻿using BestbitePizza.Constants;
+using BestbitePizza.DataServices.Contracts;
 using BestbitePizza.Models;
 using Microsoft.Azure.Cosmos;
 
-namespace BestbitePizza.DataServices.Cosmos.Context
+namespace BestbitePizza.DataServices.Cosmos.Repositories
 {
-    public class CosmosRepository : ICosmosRepository
+    public class CosmosRepository : IRepository
     {
         private readonly IConfiguration _configuration;
         private readonly string accountEndpoint;

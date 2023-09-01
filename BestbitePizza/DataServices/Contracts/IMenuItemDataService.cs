@@ -1,5 +1,4 @@
-﻿using BestbitePizza.DataServices.Dapper.Context;
-using BestbitePizza.Models;
+﻿using BestbitePizza.Models;
 
 namespace BestbitePizza.DataServices.Contracts
 {

@@ -1,10 +1,11 @@
 ﻿using BestbitePizza.Constants;
+using BestbitePizza.DataServices.Contracts;
 using BestbitePizza.Models;
 using Dapper;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace BestbitePizza.DataServices.Dapper.Context
+namespace BestbitePizza.DataServices.Dapper.Repositories
 {
     public class Repository : IRepository
     {
@@ -37,13 +38,13 @@ namespace BestbitePizza.DataServices.Dapper.Context
             string query = "Select I.id as ItemId, I.name As Name, I.availability_id As AvailabilityId, I.category_id As CategoryId, I.image_name As ImageName From pizza.menu_item I";
 
             using var connection = CreateConnection();
-            
+
             var dbResult = await connection.QueryAsync<T>(query);
 
             return dbResult.ToList();
         }
 
-        
+
         public Task<T> Add<T>(T entity)
         {
             throw new NotImplementedException();

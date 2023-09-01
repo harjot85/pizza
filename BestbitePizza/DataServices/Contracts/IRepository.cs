@@ -1,9 +1,8 @@
 ﻿using BestbitePizza.Models;
-using Microsoft.Azure.Cosmos;
 
-namespace BestbitePizza.DataServices.Cosmos.Context
+namespace BestbitePizza.DataServices.Contracts
 {
-    public interface ICosmosRepository
+    public interface IRepository
     {
         Task<T> Get<T>(int id);
         Task<List<T>> GetAll<T>();
