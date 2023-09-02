@@ -10,9 +10,9 @@ namespace BestbitePizza.Controllers
     {
         
         private readonly ILogger<MenuItemController> _logger;
-        private readonly IMenuItemDataService _pizzaItemDataService;
+        private readonly IMenuItemRepository _pizzaItemDataService;
 
-        public MenuItemController(ILogger<MenuItemController> logger, IMenuItemDataService pizzaItemDataService)
+        public MenuItemController(ILogger<MenuItemController> logger, IMenuItemRepository pizzaItemDataService)
         {
             _logger = logger;
             _pizzaItemDataService = pizzaItemDataService;
@@ -22,7 +22,7 @@ namespace BestbitePizza.Controllers
         [Route("{id}")]
         public async Task<ActionResult<IEnumerable<MenuItem>>> Get(int id)
         {
-            return Ok(await _pizzaItemDataService.Get<MenuItem>(id));
+            return Ok(await _pizzaItemDataService.GetMenuItemById(id));
         }
 
         [HttpGet]
@@ -30,7 +30,7 @@ namespace BestbitePizza.Controllers
         public async Task<ActionResult<IEnumerable<MenuItemViewModel>>> GetAll()
         {
             // TODO: Update this to have MenuItemViewModel
-            return Ok(await _pizzaItemDataService.GetAll<MenuItem>());
+            return Ok(await _pizzaItemDataService.GetAllMenuItems());
         }
 
         [HttpGet]

@@ -14,8 +14,8 @@ builder.Services.AddSwaggerGen();
 
 // service registration
 builder.Services.AddSingleton<IRepository, Repository>();
-builder.Services.AddSingleton<IRepository, CosmosRepository>();
-builder.Services.AddScoped<IMenuItemDataService, MenuItemDataService>();
+builder.Services.AddSingleton<ICosmosBaseRepository, CosmosBaseRepository>();
+builder.Services.AddScoped<IMenuItemRepository, MenuItemRepository>();
 //builder.Services.AddScoped<IMenuItemDataService, BestbitePizza.DataServices.Cosmos.Services.MenuItemDataService>();
 
 
