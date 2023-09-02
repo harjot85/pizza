@@ -1,6 +1,8 @@
 using BestbitePizza.DataServices.Contracts;
+using BestbitePizza.Models.DataModels;
 using BestbitePizza.Models;
 using Microsoft.AspNetCore.Mvc;
+using BestbitePizza.Services;
 
 namespace BestbitePizza.Controllers
 {
@@ -10,12 +12,21 @@ namespace BestbitePizza.Controllers
     {
         
         private readonly ILogger<MenuItemController> _logger;
-        private readonly IMenuItemRepository _pizzaItemDataService;
+        private readonly IMenuItemRepositoryAggregated _pizzaItemDataService;
+        private readonly IMenuServiceAggregated _menuServiceAggregated;
 
-        public MenuItemController(ILogger<MenuItemController> logger, IMenuItemRepository pizzaItemDataService)
+        public MenuItemController(ILogger<MenuItemController> logger, IMenuItemRepositoryAggregated pizzaItemDataService, IMenuServiceAggregated menuServiceAggregated)
         {
             _logger = logger;
             _pizzaItemDataService = pizzaItemDataService;
+            _menuServiceAggregated = menuServiceAggregated;
+        }
+
+        [HttpGet]
+        [Route("categorized")]
+        public async Task<ActionResult<IEnumerable<CategorizedMenu>>> GetCategorizedMenuItems()
+        {
+            return Ok(await _menuServiceAggregated.GetCategorizedMenuItems());
         }
 
         [HttpGet]
@@ -27,9 +38,8 @@ namespace BestbitePizza.Controllers
 
         [HttpGet]
         [Route("all")]
-        public async Task<ActionResult<IEnumerable<MenuItemViewModel>>> GetAll()
+        public async Task<ActionResult<IEnumerable<MenuItem>>> GetAll()
         {
-            // TODO: Update this to have MenuItemViewModel
             return Ok(await _pizzaItemDataService.GetAllMenuItems());
         }
 

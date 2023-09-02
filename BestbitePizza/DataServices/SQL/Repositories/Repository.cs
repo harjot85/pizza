@@ -1,5 +1,5 @@
 ﻿using BestbitePizza.Constants;
-using BestbitePizza.Models;
+using BestbitePizza.Models.DataModels;
 using Dapper;
 using System.Data;
 using System.Data.SqlClient;

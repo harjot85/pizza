@@ -1,4 +1,4 @@
-﻿using BestbitePizza.Models;
+﻿using BestbitePizza.Models.DataModels;
 
 namespace BestbitePizza.DataServices.Cosmos.Repositories
 {

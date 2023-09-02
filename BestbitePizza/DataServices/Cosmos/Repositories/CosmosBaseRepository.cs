@@ -1,5 +1,5 @@
 ﻿using BestbitePizza.Constants;
-using BestbitePizza.Models;
+using BestbitePizza.Models.DataModels;
 using Microsoft.Azure.Cosmos;
 
 namespace BestbitePizza.DataServices.Cosmos.Repositories

@@ -1,4 +1,4 @@
-﻿namespace BestbitePizza.Models
+﻿namespace BestbitePizza.Models.DataModels
 {
     public class Testimonial
     {

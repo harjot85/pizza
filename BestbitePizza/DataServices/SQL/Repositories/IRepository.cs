@@ -1,4 +1,4 @@
-﻿using BestbitePizza.Models;
+﻿using BestbitePizza.Models.DataModels;
 using Dapper;
 
 namespace BestbitePizza.DataServices.Dapper.Repositories

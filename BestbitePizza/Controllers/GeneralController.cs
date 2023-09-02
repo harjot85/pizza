@@ -1,4 +1,4 @@
-using BestbitePizza.Models;
+using BestbitePizza.Models.DataModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BestbitePizza.Controllers

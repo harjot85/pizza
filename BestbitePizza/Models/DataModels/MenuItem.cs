@@ -1,4 +1,4 @@
-﻿namespace BestbitePizza.Models
+﻿namespace BestbitePizza.Models.DataModels
 {
     public class MenuItem
     {
@@ -7,6 +7,5 @@
         public string? ImageName { get; set; }
         public int CategoryId { get; set; }
         public int AvailabilityId { get; set; }
-
     }
 }

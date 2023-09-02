@@ -2,6 +2,7 @@ using BestbitePizza.DataServices.Contracts;
 using BestbitePizza.DataServices.Cosmos.Repositories;
 using BestbitePizza.DataServices.Dapper.Repositories;
 using BestbitePizza.DataServices.Dapper.Services;
+using BestbitePizza.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,9 @@ builder.Services.AddSwaggerGen();
 // service registration
 builder.Services.AddSingleton<IRepository, Repository>();
 builder.Services.AddSingleton<ICosmosBaseRepository, CosmosBaseRepository>();
-builder.Services.AddScoped<IMenuItemRepository, MenuItemRepository>();
+builder.Services.AddScoped<IMenuItemRepositoryAggregated, MenuItemRepositoryAggregated>();
 //builder.Services.AddScoped<IMenuItemDataService, BestbitePizza.DataServices.Cosmos.Services.MenuItemDataService>();
+builder.Services.AddTransient<IMenuServiceAggregated, MenuServiceAggregated>();
 
 
 var app = builder.Build();

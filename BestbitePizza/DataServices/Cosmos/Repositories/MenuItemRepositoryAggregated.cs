@@ -1,13 +1,14 @@
 ﻿using BestbitePizza.DataServices.Contracts;
 using BestbitePizza.DataServices.Cosmos.Repositories;
 using BestbitePizza.Models;
+using BestbitePizza.Models.DataModels;
 
 namespace BestbitePizza.DataServices.Cosmos.Services
 {
-    public class MenuItemRepository : CosmosBaseRepository,  IMenuItemRepository
+    public class MenuItemRepositoryAggregated : CosmosBaseRepository,  IMenuItemRepositoryAggregated
     {
         
-        public MenuItemRepository(IConfiguration configuration) : base(configuration)
+        public MenuItemRepositoryAggregated(IConfiguration configuration) : base(configuration)
         { }
 
         public async Task<MenuItem> GetMenuItemById(int id)
@@ -27,6 +28,33 @@ namespace BestbitePizza.DataServices.Cosmos.Services
 
             return dbServiceResult;
         }
+
+
+        public Task<IEnumerable<Ingredient>> GetAllIngredients()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<ItemPrice>> GetAllItemPrices()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<MenuItemIngredient>> GetAllMenuItemIngredients()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Category>> GetAllCategories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Vocab>> GetVocabulary()
+        {
+            throw new NotImplementedException();
+        }
+
 
         public Task<List<MenuItem>> GetDeals()
         {
