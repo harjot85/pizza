@@ -3,6 +3,9 @@ using BestbitePizza.DataServices.Cosmos.Repositories;
 using BestbitePizza.DataServices.Dapper.Repositories;
 using BestbitePizza.DataServices.Dapper.Services;
 using BestbitePizza.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,12 +17,31 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // service registration
+builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddSingleton<IRepository, Repository>();
 builder.Services.AddSingleton<ICosmosBaseRepository, CosmosBaseRepository>();
 builder.Services.AddScoped<IMenuItemRepositoryAggregated, MenuItemRepositoryAggregated>();
 //builder.Services.AddScoped<IMenuItemDataService, BestbitePizza.DataServices.Cosmos.Services.MenuItemDataService>();
 builder.Services.AddTransient<IMenuServiceAggregated, MenuServiceAggregated>();
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("SecretKey") ?? string.Empty)),
+            ValidateLifetime = true,
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ClockSkew = TimeSpan.Zero
+        };
+    });
 
 var app = builder.Build();
 
@@ -31,6 +53,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthorization();
 
 app.UseAuthorization();
 

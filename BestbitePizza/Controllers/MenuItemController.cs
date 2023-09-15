@@ -1,8 +1,8 @@
 using BestbitePizza.DataServices.Contracts;
-using BestbitePizza.Models.DataModels;
 using BestbitePizza.Models;
-using Microsoft.AspNetCore.Mvc;
+using BestbitePizza.Models.DataModels;
 using BestbitePizza.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BestbitePizza.Controllers
 {
